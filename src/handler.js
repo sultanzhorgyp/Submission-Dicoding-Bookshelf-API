@@ -14,7 +14,7 @@ const handlerTambahBuku = (request, h) => {
     if (!name) {
       return h.response({
         status: 'fail',
-        message: 'Failed to update the book. Please fill in the name of the book',
+        message: 'Gagal menambahkan buku. Mohon isi nama buku',
       }).code(400);
     }
   
@@ -22,7 +22,7 @@ const handlerTambahBuku = (request, h) => {
       return h.response({
         status: 'fail',
         message:
-        'Failed to update the book. readPage cannot be greater than pageCount',
+        'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
       }).code(400);
     }
     const id = nanoid(16);
@@ -48,7 +48,7 @@ const handlerTambahBuku = (request, h) => {
     if (isSuccess) {
       const response = h.response({
         status: 'success',
-        message: 'Book added successfully',
+        message: 'Buku berhasil ditambahkan',
         data: {
           bookId: id,
         },
@@ -58,7 +58,7 @@ const handlerTambahBuku = (request, h) => {
     }
     const response = h.response({
       status: 'fail',
-      message: 'Book failed to add',
+      message: 'Buku gagal ditambahkan',
     });
     response.code(500);
     return response;
@@ -69,15 +69,13 @@ const handlerTambahBuku = (request, h) => {
   
     let filteredBooks = [...books];
   
-    // Filter berdasarkan name (case insensitive)
     if (query.name) {
       const searchname = query.name.toLowerCase();
       filteredBooks = filteredBooks.filter((book) =>
         book.name.toLowerCase().includes(searchname),
       );
     }
-  
-    // Filter berdasarkan status reading
+
     if (query.reading === '0' || query.reading === '1') {
       const readingValue = query.reading === '1';
       filteredBooks = filteredBooks.filter(
@@ -85,7 +83,6 @@ const handlerTambahBuku = (request, h) => {
       );
     }
   
-    // Filter berdasarkan status finished
     if (query.finished === '0' || query.finished === '1') {
       const finishedValue = query.finished === '1';
       filteredBooks = filteredBooks.filter(
@@ -120,7 +117,7 @@ const handlerTambahBuku = (request, h) => {
     }
     const response = h.response({
       status: 'fail',
-      message: 'Book not found',
+      message: 'Buku tidak ditemukan',
     });
     response.code(404);
     return response;
@@ -141,7 +138,7 @@ const handlerTambahBuku = (request, h) => {
     if (!name) {
       return h.response({
         status: 'fail',
-        message: 'Failed to update the book. Please fill in the name of the book',
+        message: 'Gagal memperbarui buku. Mohon isi nama buku',
       }).code(400);
     }
   
@@ -149,7 +146,7 @@ const handlerTambahBuku = (request, h) => {
       return h.response({
         status: 'fail',
         message:
-        'Failed to update the book. readPage cannot be greater than pageCount',
+        'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
       }).code(400);
     }
     const updatedAt = new Date().toISOString();
@@ -170,14 +167,14 @@ const handlerTambahBuku = (request, h) => {
       };
       const response = h.response({
         status: 'success',
-        message: 'The book was updated successfully',
+        message: 'Buku berhasil diperbarui',
       });
       response.code(200);
       return response;
     }
     const response = h.response({
       status: 'fail',
-      message: 'Failed to update the book. Id not found',
+      message: 'Gagal memperbarui buku. Id tidak ditemukan',
     });
     response.code(404);
     return response;
@@ -190,14 +187,14 @@ const handlerTambahBuku = (request, h) => {
       books.splice(index, 1);
       const response = h.response({
         status: 'success',
-        message: 'The book has been successfully deleted',
+        message: 'Buku berhasil dihapus',
       });
       response.code(200);
       return response;
     }
     const response = h.response({
       status: 'fail',
-      message: 'Book failed to delete. Id not found',
+      message: 'Buku gagal dihapus. Id tidak ditemukan',
     });
     response.code(404);
     return response;
