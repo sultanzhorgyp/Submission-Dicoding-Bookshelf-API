@@ -14,7 +14,7 @@ const handlerTambahBuku = (request, h) => {
     if (!name) {
       return h.response({
         status: 'fail',
-        message: 'Gagal menambahkan buku. Mohon isi name buku',
+        message: 'Failed to update the book. Please fill in the name of the book',
       }).code(400);
     }
   
@@ -22,7 +22,7 @@ const handlerTambahBuku = (request, h) => {
       return h.response({
         status: 'fail',
         message:
-        'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
+        'Failed to update the book. readPage cannot be greater than pageCount',
       }).code(400);
     }
     const id = nanoid(16);
@@ -48,7 +48,7 @@ const handlerTambahBuku = (request, h) => {
     if (isSuccess) {
       const response = h.response({
         status: 'success',
-        message: 'Buku berhasil ditambahkan',
+        message: 'Book added successfully',
         data: {
           bookId: id,
         },
@@ -58,7 +58,7 @@ const handlerTambahBuku = (request, h) => {
     }
     const response = h.response({
       status: 'fail',
-      message: 'Buku gagal ditambahkan',
+      message: 'Book failed to add',
     });
     response.code(500);
     return response;
@@ -120,7 +120,7 @@ const handlerTambahBuku = (request, h) => {
     }
     const response = h.response({
       status: 'fail',
-      message: 'Buku tidak ditemukan',
+      message: 'Book not found',
     });
     response.code(404);
     return response;
@@ -141,7 +141,7 @@ const handlerTambahBuku = (request, h) => {
     if (!name) {
       return h.response({
         status: 'fail',
-        message: 'Gagal memperbarui buku. Mohon isi name buku',
+        message: 'Failed to update the book. Please fill in the name of the book',
       }).code(400);
     }
   
@@ -149,7 +149,7 @@ const handlerTambahBuku = (request, h) => {
       return h.response({
         status: 'fail',
         message:
-        'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
+        'Failed to update the book. readPage cannot be greater than pageCount',
       }).code(400);
     }
     const updatedAt = new Date().toISOString();
@@ -170,14 +170,14 @@ const handlerTambahBuku = (request, h) => {
       };
       const response = h.response({
         status: 'success',
-        message: 'Buku berhasil diperbarui',
+        message: 'The book was updated successfully',
       });
       response.code(200);
       return response;
     }
     const response = h.response({
       status: 'fail',
-      message: 'Gagal memperbarui buku. Id tidak ditemukan',
+      message: 'Failed to update the book. Id not found',
     });
     response.code(404);
     return response;
@@ -190,14 +190,14 @@ const handlerTambahBuku = (request, h) => {
       books.splice(index, 1);
       const response = h.response({
         status: 'success',
-        message: 'Buku berhasil dihapus',
+        message: 'The book has been successfully deleted',
       });
       response.code(200);
       return response;
     }
     const response = h.response({
       status: 'fail',
-      message: 'Buku gagal dihapus. Id tidak ditemukan',
+      message: 'Book failed to delete. Id not found',
     });
     response.code(404);
     return response;
